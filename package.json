@@ -1,0 +1,25 @@
+{
+  "name": "svg-embed",
+  "version": "1.0.0",
+  "description": "Embed SVG code into DOM.",
+  "main": "lib/embed.js",
+  "browser": "lib/embed.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elfet/svg-embed.git"
+  },
+  "keywords": [
+    "svg",
+    "embed",
+    "inline"
+  ],
+  "author": "Anton Medvedev <anton@medv.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elfet/svg-embed/issues"
+  },
+  "homepage": "https://github.com/elfet/svg-embed#readme"
+}
