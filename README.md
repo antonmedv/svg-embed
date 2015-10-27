@@ -3,6 +3,7 @@
 ```
 npm install svg-embed --save
 ```
+Support Chrome 11+, Safari 5+, FireFox 4+, IE9+. 
 
 ## Usage
 

@@ -4,7 +4,7 @@
   var pending = {};
 
   function svgEmbed() {
-    var nodes = document.querySelectorAll(`[${attr}]`);
+    var nodes = document.querySelectorAll('[' + attr + ']');
     for (var i = 0; i < nodes.length; i++) {
       compileAndEmbed(nodes[i]);
     }
