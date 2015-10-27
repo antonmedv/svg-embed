@@ -1,9 +1,9 @@
 {
   "name": "svg-embed",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Embed SVG code into DOM.",
-  "main": "lib/embed.js",
-  "browser": "lib/embed.js",
+  "main": "src/embed.js",
+  "browser": "src/embed.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
