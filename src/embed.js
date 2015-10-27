@@ -16,15 +16,22 @@
       embed(node, name);
       node.removeAttribute(attr);
     } else {
-      var match, image = window.getComputedStyle(node).backgroundImage;
-      if (match = image.match(/^url\(data:image\/svg\+xml,(.+?)\)$/)) {
+      var match, url = decodeURIComponent(window.getComputedStyle(node).backgroundImage);
+      if (match = url.match(/^url\("?data:image\/svg\+xml,(.+?)"?\)$/)) {
 
-        icons[name] = compile(decodeURIComponent(match[1]));
+        icons[name] = compile(match[1]);
 
         embed(node, name);
         node.removeAttribute(attr);
 
-      } else if (match = image.match(/^url\((.+?)\)$/)) {
+      } else if (match = url.match(/^url\("?data:image\/svg\+xml;base64,(.+?)"?\)$/)) {
+
+        icons[name] = compile(atob(match[1]));
+
+        embed(node, name);
+        node.removeAttribute(attr);
+
+      } else if (match = url.match(/^url\("?(.+?)"?\)$/)) {
 
         if (pending[name] !== undefined) {
           pending[name].push(function () {
@@ -37,7 +44,7 @@
             icons[name] = compile(xhr.responseText);
             embed(node, name);
 
-            for(var i = 0; i < pending[name].length; i++) {
+            for (var i = 0; i < pending[name].length; i++) {
               pending[name][i]();
             }
             pending[name] = undefined;

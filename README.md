@@ -34,6 +34,9 @@ var svgEmbed = require('svg-embed');
 svgEmbed();
 ```
 
+> If you need IE9 support, include polyfill for [https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/atob](atob) function.
+> Or don't use base64 encoded SVG. 
+
 ## Example
 
 <a href="http://elfet.github.io/svg-embed/example/">Go to example</a>
