@@ -1,45 +1,50 @@
-(function () {
+(function (window, document, undefined) {
   var attr = 'data-svg-embed';
   var icons = {};
+  var pending = {};
 
   function svgEmbed() {
     var nodes = document.querySelectorAll(`[${attr}]`);
     for (var i = 0; i < nodes.length; i++) {
-      embed(nodes[i]);
+      compileAndEmbed(nodes[i]);
     }
   }
 
-  function embed(node) {
+  function compileAndEmbed(node) {
     var name = getIconName(node);
     if (name in icons) {
-      node.appendChild(icons[name].cloneNode(true));
-      node.style.backgroundImage = 'none';
+      embed(node, name);
       node.removeAttribute(attr);
     } else {
       var match, image = window.getComputedStyle(node).backgroundImage;
       if (match = image.match(/^url\(data:image\/svg\+xml,(.+?)\)$/)) {
 
         icons[name] = compile(decodeURIComponent(match[1]));
-        node.appendChild(icons[name].cloneNode(true));
-        node.style.backgroundImage = 'none';
+
+        embed(node, name);
         node.removeAttribute(attr);
 
       } else if (match = image.match(/^url\((.+?)\)$/)) {
 
-        var url = match[1];
-        var xhr = new window.XMLHttpRequest();
-        xhr.open("GET", url, true);
-        xhr.onload = function () {
-          if (!(name in icons)) {
+        if (pending[name] !== undefined) {
+          pending[name].push(function () {
+            embed(node, name);
+          });
+        } else {
+          var xhr = new window.XMLHttpRequest();
+          xhr.open("GET", match[1], true);
+          xhr.onload = function () {
             icons[name] = compile(xhr.responseText);
-          } else {
-            console.log('reuse', name);
-          }
-          node.appendChild(icons[name].cloneNode(true));
-          node.style.backgroundImage = 'none';
-        };
-        xhr.send();
+            embed(node, name);
 
+            for(var i = 0; i < pending[name].length; i++) {
+              pending[name][i]();
+            }
+            pending[name] = undefined;
+          };
+          pending[name] = [];
+          xhr.send();
+        }
         node.removeAttribute(attr);
 
       }
@@ -61,9 +66,14 @@
     return container.querySelector('svg');
   }
 
+  function embed(node, name) {
+    node.appendChild(icons[name].cloneNode(true));
+    node.style.backgroundImage = 'none';
+  }
+
   if (typeof module !== "undefined") {
     module.exports = svgEmbed;
   } else {
     window.svgEmbed = svgEmbed;
   }
-})(window.document);
+})(window, window.document, void 0);
