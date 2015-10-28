@@ -36,7 +36,7 @@ Support Chrome 11+, Safari 5+, iOS 5.1+, FireFox 4+, Android 4+, IE9+.
 <i class="icon-bear red" data-svg-embed></i>
 ```
 
-Require svgEmbed or include [embed.js](scr/embed.js) as script on page, and call `svgEmbed` function. It will embed icons 
+Require svgEmbed or include [embed.js](src/embed.js) as script on page, and call `svgEmbed` function. It will embed icons 
 for all nodes with `data-svg-embed` attribute.
 ```js
 var svgEmbed = require('svg-embed');
