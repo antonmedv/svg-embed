@@ -8,9 +8,9 @@ Where are a few way to [use SVG](https://css-tricks.com/using-svg/) on page. One
 use SVG as `background-image` (with url to resource `*.svg` or with data url), but in such way of using SVG, it loses 
 ability to change colors and animation of SVG. 
 
-Solution of this problem is to embed SVG from `background-image` to DOM. This is what `svg-embed` doing.
+Solution of this problem is to embed SVG from `background-image` to DOM. This is what [svg-embed](https://www.npmjs.com/package/svg-embed) doing.
 
-Support Chrome 11+, Safari 5+, FireFox 4+, IE9+.
+Support Chrome 11+, Safari 5+, iOS 5.1+, FireFox 4+, Android 4+, IE9+.
 
 ## Usage
 

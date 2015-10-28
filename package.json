@@ -1,6 +1,6 @@
 {
   "name": "svg-embed",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Embed SVG code into DOM.",
   "main": "src/embed.js",
   "browser": "src/embed.js",
