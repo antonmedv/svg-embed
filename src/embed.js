@@ -17,21 +17,21 @@
       node.removeAttribute(attr);
     } else {
       var match, url = decodeURIComponent(window.getComputedStyle(node).backgroundImage);
-      if (match = url.match(/^url\("?data:image\/svg\+xml(;charset=[\w\-]+)?,(.+?)"?\)$/)) {
+      if (match = url.match(/^url\(["']?data:image\/svg\+xml(;charset=[\w\-]+)?,(.+?)["']?\)$/)) {
 
         icons[name] = compile(match[2]);
 
         embed(node, name);
         node.removeAttribute(attr);
 
-      } else if (match = url.match(/^url\("?data:image\/svg\+xml(;charset=[\w\-]+)?;base64,(.+?)"?\)$/)) {
+      } else if (match = url.match(/^url\(["']?data:image\/svg\+xml(;charset=[\w\-]+)?;base64,(.+?)["']?\)$/)) {
 
         icons[name] = compile(atob(match[2]));
 
         embed(node, name);
         node.removeAttribute(attr);
 
-      } else if (match = url.match(/^url\("?(.+?)"?\)$/)) {
+      } else if (match = url.match(/^url\(["']?(.+?)["']?\)$/)) {
 
         if (pending[name] !== undefined) {
           pending[name].push(function () {
