@@ -48,4 +48,4 @@ svgEmbed();
 
 ## Example
 
-<a href="http://elfet.github.io/svg-embed/example/">Go to example</a>
+<a href="http://antonmedv.github.io/svg-embed/example/">Go to example</a>
